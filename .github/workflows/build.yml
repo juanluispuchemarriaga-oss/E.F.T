@@ -25,8 +25,12 @@ jobs:
 
       - name: Crear proyecto Android
         run: npx cap add android
-      - name: Preparar icono
-        run: convert assets/06c41831656a90f3fbf898850b62c946.jpg -resize 1024x1024^ -gravity center -extent 1024x1024 assets/icon-only.png
+      -       - name: Preparar icono
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          convert assets/06c41831656a90f3fbf898850b62c946.jpg -resize 1024x1024^ -gravity center -extent 1024x1024 assets/icon-only.png
+
 
       - name: Generar iconos
         run: npx @capacitor/assets generate --android --iconBackgroundColor '#111b21' --iconBackgroundColorDark '#111b21'
