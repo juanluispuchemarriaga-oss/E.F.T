@@ -25,7 +25,11 @@ jobs:
 
       - name: Crear proyecto Android
         run: npx cap add android
+      - name: Preparar icono
+        run: convert assets/06c41831656a90f3fbf898850b62c946.jpg -resize 1024x1024^ -gravity center -extent 1024x1024 assets/icon-only.png
 
+      - name: Generar iconos
+        run: npx @capacitor/assets generate --android --iconBackgroundColor '#111b21' --iconBackgroundColorDark '#111b21'
       - name: Permiso de micrófono
         run: |
           sed -i 's#<application#<uses-permission android:name="android.permission.RECORD_AUDIO" />\n    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />\n    <application#' android/app/src/main/AndroidManifest.xml
